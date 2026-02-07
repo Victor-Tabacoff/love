@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For You ❤️</title>
+  <style>
+    body {
+      font-family: "Georgia", serif;
+      background: linear-gradient(to bottom right, #ffe6f0, #fff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      max-width: 400px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+      background: #ff80ab;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #ff5c8a;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2 id="message"></h2>
+    <button onclick="newMessage()">Give me another 💕</button>
+  </div>
+
+  <script>
+    const messages = [
+      "You are so deeply loved, more than you realize.",
+      "I am endlessly and forever proud of YOU!",
+      "You make my world warmer just by being in it.",
+      "You are always more than enough. Always.",
+      "I’m SO lucky to have you.",
+      "You make everything better.",
+      "You are my favorite person.",
+      "I believe in you with my whole heart.",
+      "I love YOU SOSOSOSOSOSOSOSOSOSO MUCHHHHH!!!!!!!",
+      "How did I get THIS lucky? Like WOW!",
+      "You have the most gorgeous, beautiful body ever!",
+      "Your smile is so FUCKING PRETTY!!!!!",
+      "No matter the hardships, I'm NEVER leaving you <3",
+      "Hello! :D",
+      "YES BABE! WE ARE EVERY PAIR OF OBJECTS AND THINGS!",
+      "I love you TTTTTTTTTTTTTTTTTTTTTTTHHHHHHHHHHHHHHHHHHHHHHHHHHHHIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIISSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS much and more ;)",
+      "I love you more! ;)",
+      "I am absolutely real!",
+      "Thank you for making me always feel heard and understood <333",
+      "I always catch myself smiling everytime I hear you sing!",
+      "Are you sure you're real?",
+      "Thank you for raising my spirits even on the most shitty of days!",
+      "Hey guess what? I LOVE YOUUUU!!!!!",
+      "MUAH MUAH MUAH MUAH MUAH MUAH MUAH MUAH MUAH MUAH MUAH MUAH MUAH MUAH MUAH MUAH MUAH MUAH MUAH MUAH MUAH MUAH MUAH!!!!",
+      "You light up every room with your smile and eyes!",
+      "You're so UNBELIEVABLY kind and loving in ways that just make my life so much better!",
+      "You care so much for me and you're always there when I need you to be. That's very much appreciated <333",
+      "You make every day so freaking awesome just by being YOU!!!!",
+      "Fun Fact: Did you know that I love you more than I love Dr Bebber and shawarma combined by a lot! Like A LOT A LOT!!!!"
+    ];
+
+    function newMessage() {
+      const randomIndex = Math.floor(Math.random() * messages.length);
+      document.getElementById("message").textContent = messages[randomIndex];
+    }
+
+    // Show one as soon as the page opens
+    newMessage();
+  </script>
+
+</body>
+</html>
