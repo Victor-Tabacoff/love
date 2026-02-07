@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>For You ❤️</title>
+
   <style>
     body {
       font-family: "Georgia", serif;
@@ -12,6 +13,7 @@
       align-items: center;
       height: 100vh;
       text-align: center;
+      overflow: hidden;
     }
 
     .card {
@@ -20,6 +22,8 @@
       border-radius: 15px;
       box-shadow: 0 10px 25px rgba(0,0,0,0.1);
       max-width: 400px;
+      position: relative;
+      z-index: 2;
     }
 
     button {
@@ -36,8 +40,31 @@
     button:hover {
       background: #ff5c8a;
     }
+
+    /* 💖 Floating Hearts */
+    .heart {
+      position: absolute;
+      bottom: -20px;
+      font-size: 20px;
+      animation: floatUp 6s linear infinite;
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    @keyframes floatUp {
+      from {
+        transform: translateY(0);
+        opacity: 0.8;
+      }
+      to {
+        transform: translateY(-110vh);
+        opacity: 0;
+      }
+    }
+
   </style>
 </head>
+
 <body>
 
   <div class="card">
@@ -46,6 +73,7 @@
   </div>
 
   <script>
+
     const messages = [
       "You are so deeply loved, more than you realize.",
       "I am endlessly and forever proud of YOU!",
@@ -83,8 +111,30 @@
       document.getElementById("message").textContent = messages[randomIndex];
     }
 
-    // Show one as soon as the page opens
     newMessage();
+
+    /* 💖 Create floating hearts */
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+
+      // Random heart styles
+      const hearts = ["💖","💗","💘","💝"];
+      heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = Math.random() * 20 + 15 + "px";
+      heart.style.animationDuration = Math.random() * 3 + 3 + "s";
+
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 6000);
+    }
+
+    setInterval(createHeart, 500);
+
   </script>
 
 </body>
