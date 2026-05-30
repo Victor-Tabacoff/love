@@ -1,154 +1,279 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>For You 💜</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You 💜</title>
 
-  <style>
-    body {
-      font-family: "Georgia", serif;
-      background: linear-gradient(to bottom right, #ffe6f0, #fff);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      text-align: center;
-      overflow: hidden;
-    }
+<style>
 
-    /* 💌 Bigger Card */
-    .card {
-      background: white;
-      padding: 50px;
-      border-radius: 20px;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-      max-width: 600px;
-      width: 90%;
-      position: relative;
-      z-index: 2;
-    }
+body {
+  font-family: Georgia, serif;
+  background: linear-gradient(to bottom right, #ffe6f0, #fff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+}
 
-    /* 💖 Bigger Message Text */
-    #message {
-      font-size: 28px;
-      line-height: 1.4;
-      margin-bottom: 25px;
-    }
+/* Tabs */
+.tabs {
+  position: absolute;
+  top: 25px;
+  display: flex;
+  gap: 12px;
+  z-index: 10;
+}
 
-    /* 💕 Bigger Button */
-    button {
-      padding: 16px 28px;
-      font-size: 20px;
-      border: none;
-      border-radius: 12px;
-      background: #ff80ab;
-      color: white;
-      cursor: pointer;
-      transition: 0.2s;
-    }
+.tabs button {
+  padding: 12px 20px;
+  font-size: 16px;
+  border: 2px solid #ff80ab;
+  background: white;
+  color: #ff5c8a;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.2s;
+}
 
-    button:hover {
-      background: #ff5c8a;
-      transform: scale(1.05);
-    }
+.tabs button:hover {
+  transform: scale(1.05);
+}
 
-    /* 💖 Floating Hearts */
-    .heart {
-      position: absolute;
-      bottom: -20px;
-      font-size: 20px;
-      animation: floatUp 6s linear infinite;
-      opacity: 0.7;
-      pointer-events: none;
-    }
+/* Main card */
+.card {
+  background: white;
+  padding: 50px;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+  width: 90%;
+  max-width: 650px;
+  text-align: center;
+  z-index: 2;
+  position: relative;
+}
 
-    @keyframes floatUp {
-      from {
-        transform: translateY(0);
-        opacity: 0.8;
-      }
-      to {
-        transform: translateY(-110vh);
-        opacity: 0;
-      }
-    }
+/* Message section */
+#message {
+  font-size: 28px;
+  line-height: 1.4;
+  margin-bottom: 25px;
+}
 
-  </style>
+.mainButton {
+  padding: 16px 28px;
+  font-size: 20px;
+  border: none;
+  border-radius: 12px;
+  background: #ff80ab;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.mainButton:hover {
+  background: #ff5c8a;
+  transform: scale(1.05);
+}
+
+/* Timeline */
+.timeline {
+  text-align: left;
+  max-height: 450px;
+  overflow-y: auto;
+}
+
+.timeline-item {
+  border-left: 3px solid #ff80ab;
+  padding-left: 20px;
+  margin-bottom: 25px;
+}
+
+.timeline-item h3 {
+  color: #ff5c8a;
+  margin-bottom: 5px;
+}
+
+.timeline-item p {
+  margin: 0;
+}
+
+/* Floating Hearts */
+.heart {
+  position: absolute;
+  bottom: -20px;
+  font-size: 20px;
+  animation: floatUp 6s linear infinite;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+@keyframes floatUp {
+  from {
+    transform: translateY(0);
+    opacity: 0.8;
+  }
+
+  to {
+    transform: translateY(-110vh);
+    opacity: 0;
+  }
+}
+
+</style>
 </head>
 
 <body>
 
-  <div class="card">
+<div class="tabs">
+  <button onclick="showTab('messages')">💕 Messages</button>
+  <button onclick="showTab('timeline')">📅 Timeline</button>
+</div>
+
+<div class="card">
+
+  <!-- Messages -->
+  <div id="messagesTab">
     <h2 id="message"></h2>
-    <button onclick="newMessage()">Give me another 💕</button>
+    <button class="mainButton" onclick="newMessage()">
+      Give me another 💕
+    </button>
   </div>
 
-  <script>
+  <!-- Timeline -->
+  <div id="timelineTab" style="display:none;">
+    <h2>Our Story 💜</h2>
 
-    const messages = [
-      "You are so deeply loved, more than you realize.",
-      "I am endlessly and forever proud of YOU!",
-      "You make my world warmer just by being in it.",
-      "You are always more than enough. Always.",
-      "I’m SO lucky to have you.",
-      "You make everything better.",
-      "You are my favorite person.",
-      "I believe in you with my whole heart.",
-      "I love YOU SOSOSOSOSOSOSOSOSOSO MUCHHHHH!!!!!!!",
-      "How did I get THIS lucky? Like WOW!",
-      "You have the most gorgeous, beautiful body ever!",
-      "Your smile is so FUCKING PRETTY!!!!!",
-      "No matter the hardships, I'm NEVER leaving you <3",
-      "Hello! :D",
-      "YES BABE! WE ARE EVERY PAIR OF OBJECTS AND THINGS!",
-      "I love you TTTTTTTTTTTTTTTTTTTTTTTHHHHHHHHHHHHHHHHHHHHHHHHHHHHIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIISSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS much and more ;)",
-      "I love you more! ;)",
-      "I am absolutely real!",
-      "Thank you for making me always feel heard and understood <333",
-      "I always catch myself smiling everytime I hear you sing!",
-      "Are you sure you're real?",
-      "Thank you for raising my spirits even on the most shitty of days!",
-      "Hey guess what? I LOVE YOUUUU!!!!!",
-      "MUAH MUAH MUAH MUAH MUAH MUAH MUAH MUAH MUAH MUAH MUAH MUAH MUAH MUAH MUAH MUAH MUAH MUAH MUAH MUAH MUAH MUAH MUAH!!!!",
-      "You light up every room with your smile and eyes!",
-      "You're so UNBELIEVABLY kind and loving in ways that just make my life so much better!",
-      "You care so much for me and you're always there when I need you to be. That's very much appreciated <333",
-      "You make every day so freaking awesome just by being YOU!!!!",
-      "Fun Fact: Did you know that I love you more than I love Dr Bebber and shawarma combined by a lot! Like A LOT A LOT!!!!"
-    ];
+    <div class="timeline">
 
-    function newMessage() {
-      const randomIndex = Math.floor(Math.random() * messages.length);
-      document.getElementById("message").textContent = messages[randomIndex];
-    }
+      <div class="timeline-item">
+        <h3>✨ The Day We Met</h3>
+        <p>Put your date and memory here.</p>
+      </div>
 
-    newMessage();
+      <div class="timeline-item">
+        <h3>💕 First Time We Talked For Hours</h3>
+        <p>Add your story here.</p>
+      </div>
 
-    /* 💖 Create floating hearts */
-    function createHeart() {
-      const heart = document.createElement("div");
-      heart.classList.add("heart");
+      <div class="timeline-item">
+        <h3>🌸 First Date</h3>
+        <p>Add your memory here.</p>
+      </div>
 
-      // Random heart styles
-      const hearts = ["💖","💗","💘","💝","💜","💜","💜","💜"];
-      heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+      <div class="timeline-item">
+        <h3>💜 Became Official</h3>
+        <p>Add your date here.</p>
+      </div>
 
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.fontSize = Math.random() * 20 + 15 + "px";
-      heart.style.animationDuration = Math.random() * 3 + 3 + "s";
+      <div class="timeline-item">
+        <h3>✈️ Long Distance Begins</h3>
+        <p>
+          No matter how many miles are between us,
+          we're still choosing each other every day.
+        </p>
+      </div>
 
-      document.body.appendChild(heart);
+      <div class="timeline-item">
+        <h3>🏠 Future</h3>
+        <p>Closing the distance someday ❤️</p>
+      </div>
 
-      setTimeout(() => {
-        heart.remove();
-      }, 6000);
-    }
+    </div>
+  </div>
 
-    setInterval(createHeart, 500);
+</div>
 
-  </script>
+<script>
+
+const messages = [
+  "You are so deeply loved, more than you realize.",
+  "I am endlessly and forever proud of YOU!",
+  "You make my world warmer just by being in it.",
+  "You are always more than enough. Always.",
+  "I’m SO lucky to have you.",
+  "You make everything better.",
+  "You are my favorite person.",
+  "I believe in you with my whole heart.",
+  "I love YOU SOSOSOSOSOSOSOSOSOSO MUCHHHHH!!!!!!!",
+  "How did I get THIS lucky? Like WOW!",
+  "You have the most gorgeous, beautiful body ever!",
+  "Your smile is so PRETTY!!!!!",
+  "No matter the hardships, I'm NEVER leaving you <3",
+  "Hello! :D",
+  "YES BABE! WE ARE EVERY PAIR OF OBJECTS AND THINGS!",
+  "I love you TTTTTTTTHHHHHHHIIIIIIISSSSS much and more ;)",
+  "I love you more! ;)",
+  "I am absolutely real!",
+  "Thank you for making me always feel heard and understood <333",
+  "I always catch myself smiling every time I hear you sing!",
+  "Are you sure you're real?",
+  "Thank you for raising my spirits even on the most difficult days!",
+  "Hey guess what? I LOVE YOUUUU!!!!!",
+  "MUAH MUAH MUAH MUAH MUAH!!!!",
+  "You light up every room with your smile and eyes!",
+  "You're unbelievably kind and loving.",
+  "You make every day so much better just by being YOU!!!!"
+];
+
+function newMessage() {
+  const randomIndex =
+    Math.floor(Math.random() * messages.length);
+
+  document.getElementById("message").textContent =
+    messages[randomIndex];
+}
+
+function showTab(tab) {
+
+  document.getElementById("messagesTab").style.display = "none";
+  document.getElementById("timelineTab").style.display = "none";
+
+  if (tab === "messages") {
+    document.getElementById("messagesTab").style.display = "block";
+  }
+
+  if (tab === "timeline") {
+    document.getElementById("timelineTab").style.display = "block";
+  }
+}
+
+newMessage();
+
+/* Floating Hearts */
+
+function createHeart() {
+
+  const heart = document.createElement("div");
+
+  heart.classList.add("heart");
+
+  const hearts = [
+    "💖","💗","💘","💝","💜","💜","💜"
+  ];
+
+  heart.innerHTML =
+    hearts[Math.floor(Math.random() * hearts.length)];
+
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize =
+    Math.random() * 20 + 15 + "px";
+
+  heart.style.animationDuration =
+    Math.random() * 3 + 3 + "s";
+
+  document.body.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 6000);
+}
+
+setInterval(createHeart, 500);
+
+</script>
 
 </body>
 </html>
-
-
