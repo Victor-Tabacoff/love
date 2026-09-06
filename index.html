@@ -168,7 +168,7 @@ body {
         <h3>First Date Kinda Nervous</h3>
         <p>
           November 1st, 2025<br>
-          I'm all dressed up, grey jeans and maroon quarter zip and I stand at your door with flowers in my hands. I ring the doorbell and when the door opens I see you in your cute pink-lavendar top. We walk to downtown Arlington Heights hand in hand and were just goofing off throwing jokes to each other. We get to Armand's and we take a seat and order ourselves a big ol' pizza! We also get you calamari since you've never had it before! WHAT??? Hehehe. We eat, talk, and laugh and have a very successful first date. We then go back to yours and we head into your basement. We get a blanket and snuggle up against each other all nice and warm. We decide to watch our FAVORITE movie Lego Batman! Hell yeah! We're just reciting the whole movie at that point! We finish it and then we get FREAKY! And by that I mean we make out a lot! I'm trying this time hahaha! But we kiss and kiss and kiss and kiss until I go back home! It was a successful first date!
+          I'm all dressed up, grey jeans and maroon quarter zip and I stand at your door with flowers in my hands. I ring the doorbell and when the door opens I see you in your cute pink-lavendar top. We walked to downtown Arlington Heights hand in hand and were just goofing off throwing jokes to each other. We get to Armand's and we take a seat and order ourselves a big ol' pizza! We also get you calamari since you've never had it before! WHAT??? Hehehe. We eat, talk, and laugh and have a very successful first date. We then go back to yours and we head into your basement. We get a blanket and snuggle up against each other all nice and warm. We decide to watch our FAVORITE movie Lego Batman! Hell yeah! We're just reciting the whole movie at that point! We finish it and then we get FREAKY! And by that I mean we make out a lot! I'm trying this time hahaha! But we kiss and kiss and kiss and kiss until I go back home! It was a successful first date!
         </p>
       </div>
 
@@ -244,7 +244,7 @@ const messages = [
   "I genuinely can't believe you're mine!",
   "I love you :)",
   "I love YOU!!!",
-  "Thy loveth for thee surpasses the extent to which even the greatest of merchants have traveled and hiked! It surpasses even the mightiest of constilations. Far beyond thee can fathom!!! I ADORE THEE!",
+  "Thy loveth for thee surpasses the extent to which even the greatest of merchants have traveled and hiked! It surpasses even the mightiest of constellations. Far beyond thee can fathom!!! I ADORE THEE!",
   "I love you, statment",
   "You have such a kind and caring soul and guess what? It's mine >:)",
   "Don't overthink it babe, my eyes are only for you and you specifically",
@@ -259,62 +259,51 @@ const messages = [
   "Thank you for everything. Really. Thank you :)"
 ];
 
-function newMessage() {
-  const randomIndex =
-    Math.floor(Math.random() * messages.length);
 
-  document.getElementById("message").textContent =
-    messages[randomIndex];
+// Display a random message on load
+function newMessage() {
+  const randomIndex = Math.floor(Math.random() * messages.length);
+  document.getElementById("message").innerText = messages[randomIndex];
 }
 
-function showTab(tab) {
-
-  document.getElementById("messagesTab").style.display = "none";
-  document.getElementById("timelineTab").style.display = "none";
-
-  if (tab === "messages") {
+// Toggle between Messages and Timeline tabs
+function showTab(tabName) {
+  if (tabName === 'messages') {
     document.getElementById("messagesTab").style.display = "block";
-  }
-
-  if (tab === "timeline") {
+    document.getElementById("timelineTab").style.display = "none";
+  } else if (tabName === 'timeline') {
+    document.getElementById("messagesTab").style.display = "none";
     document.getElementById("timelineTab").style.display = "block";
   }
 }
 
-newMessage();
-
-/* Floating Hearts */
-
+// Create floating hearts periodically
 function createHeart() {
-
   const heart = document.createElement("div");
-
   heart.classList.add("heart");
-
-  const hearts = [
-    "💖","💗","💘","💝","💜","💜","💜","💜"
-  ];
-
-  heart.innerHTML =
-    hearts[Math.floor(Math.random() * hearts.length)];
-
+  
+  // Array of cute emojis to float up
+  const hearts = ["💜", "💖", "💝", "💕", "💜", "💜","💜"];
+  heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
+  
   heart.style.left = Math.random() * 100 + "vw";
-  heart.style.fontSize =
-    Math.random() * 20 + 15 + "px";
-
-  heart.style.animationDuration =
-    Math.random() * 3 + 3 + "s";
-
+  heart.style.animationDuration = Math.random() * 3 + 3 + "s"; // 3s to 6s
+  heart.style.fontSize = Math.random() * 15 + 15 + "px"; // 15px to 30px
+  
   document.body.appendChild(heart);
-
+  
+  // Remove heart from DOM after animation completes
   setTimeout(() => {
     heart.remove();
   }, 6000);
 }
 
-setInterval(createHeart, 500);
+// Initialize on window load
+window.onload = function() {
+  newMessage();
+  setInterval(createHeart, 400); // Generate a heart every 400ms
+};
 
 </script>
-
 </body>
 </html>
